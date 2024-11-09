@@ -10,5 +10,8 @@ import { RouterModule } from '@angular/router';
   styleUrl: './about.component.css'
 })
 export class AboutComponent {
-
+  imageUrl = 'ast.jpg';
+  imageUrl1='he.jpg';
+  imageUr2='hi.jpg';
+  imageUr3='one.jpg';
 }

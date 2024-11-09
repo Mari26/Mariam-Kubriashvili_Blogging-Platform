@@ -1,1 +1,29 @@
-<p>contact works!</p>
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="name" class="form-label" class="fw-bold">Name</label>
+      <input type="text" class="form-control" id="name" formControlName="name">
+      <div *ngIf="contactForm.get('name')?.invalid && contactForm.get('name')?.touched" class="text-danger"> 
+  
+        <div *ngIf="contactForm.get('name')?.errors?.['required']">Name is required.</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label" class="fw-bold">Email address</label>
+      <input type="email" class="form-control" id="email" formControlName="email">
+      <div *ngIf="contactForm.get('email')?.invalid && contactForm.get('email')?.touched" class="text-danger">
+        <div *ngIf="contactForm.get('email')?.errors?.['required']">Email is required.</div>
+        <div *ngIf="contactForm.get('email')?.errors?.['email']">Invalid email format.</div>
+      </div>
+    </div>
+  
+    <div class="mb-3">
+      <label for="message" class="form-label" class="fw-bold">Message</label>
+      <textarea class="form-control" id="message" rows="5" formControlName="message"></textarea>
+      <div *ngIf="contactForm.get('message')?.invalid && contactForm.get('message')?.touched" class="text-danger">
+        <div *ngIf="contactForm.get('message')?.errors?.['required']">Message is required.</div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button> 
+  
+  </form>
+    <hr class="my-4">
