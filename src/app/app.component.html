@@ -1,11 +1,24 @@
 
-<main class="main">
-  <div class="content">
+<!-- <main class="main">
+  <div class="content"> -->
     <app-header></app-header>
-    <app-blog-post></app-blog-post>
-  
-  </div>
-  
-</main>
+   
+    <div class="container px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+          <router-outlet ></router-outlet>
+          
+         
+          
+        <!-- <div class="col-md-10 col-lg-8 col-xl-7" *ngFor="let post of posts">
+       <app-blog-post [post]="post">
+     
+       </app-blog-post> -->
+    <!-- <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div> -->
+  <!-- </div> -->
+</div>
+</div>
 
-<router-outlet />
+    <app-footer></app-footer>
+<!-- </main> -->
+
+

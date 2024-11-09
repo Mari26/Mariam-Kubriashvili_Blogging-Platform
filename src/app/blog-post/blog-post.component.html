@@ -1,0 +1,14 @@
+<div class="post-preview" *ngIf="post"> 
+    <a [routerLink]="['/post', post.id]" > 
+      <h2 class="post-title">{{post.title }}</h2>
+      <h3 class="post-subtitle">{{post.body }}</h3>
+    </a>
+    <p class="post-meta">
+      Posted by
+      <a href="#!">Start Bologging</a>
+      on November 24, 2024
+    </p>
+  </div>
+  
+<!-- Divider-->
+<!-- <hr class="my-4" *ngIf="post"> -->

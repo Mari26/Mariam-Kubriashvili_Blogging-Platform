@@ -1,23 +1,17 @@
-import { Component, Input, OnInit,} from '@angular/core';
-import { PostService } from '../post.service';
-import { Post } from '../post.service';
 import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit } from '@angular/core';
+import { Post, PostService } from '../post.service';
 import { RouterModule } from '@angular/router';
-// import { BlogService } from '../blog.service';
-
-
+import { BlogPostComponent } from '../blog-post/blog-post.component';
 
 @Component({
-  selector: 'app-blog-post',
+  selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,RouterModule ],
-  templateUrl: './blog-post.component.html',
-  styleUrl: './blog-post.component.css'
+  imports: [CommonModule,RouterModule,BlogPostComponent],
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css'
 })
-
-
-export class BlogPostComponent implements OnInit{
-  // @Input() posts: Post[] = [];
+export class HomeComponent implements OnInit{
   @Input() post: Post | undefined;
   posts: Post[] = [];
   constructor(private postService: PostService) {}
@@ -31,7 +25,5 @@ export class BlogPostComponent implements OnInit{
     .subscribe(posts => {
       this.posts = posts.slice(0, 3); // Take the first 3 posts
     });
-  
-  }
- 
+}
 }
