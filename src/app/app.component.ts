@@ -25,7 +25,8 @@ import { BlogPostListComponent } from './blog-post-list/blog-post-list.component
     SharedModule,
     RouterLink,
     RouterLinkActive,
-    RouterModule
+    RouterModule,
+    
   ],
   providers: [
     PostService,

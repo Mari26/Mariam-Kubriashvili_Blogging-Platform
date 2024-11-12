@@ -21,11 +21,9 @@ export class ContactComponent {
 
   onSubmit() {
     if (this.contactForm.valid){
-      // Process the form data (e.g., send it to an API)
       console.log(this.contactForm.value); 
       this.contactForm.reset(); 
     } else {
-      // Mark all controls as touched to display error messages
       this.contactForm.markAllAsTouched();
     }
   }

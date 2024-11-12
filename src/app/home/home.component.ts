@@ -17,10 +17,6 @@ export class HomeComponent implements OnInit{
   constructor(private postService: PostService) {}
 
   ngOnInit() {
-    // If you want to fetch posts within this component:
-    // this.postService.getPosts().subscribe(posts => {
-    //   this.post = posts[0]; // Assuming you want the first post
-    // });
     this.postService.getPosts()
     .subscribe(posts => {
       this.posts = posts.slice(0, 3); // Take the first 3 posts

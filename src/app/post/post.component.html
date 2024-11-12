@@ -1,10 +1,9 @@
  
 <div *ngIf="post">
-    
     <h1>{{ post.title }}</h1>
     <p>{{ post.body }}</p>
   </div>
-  
+
   <div *ngIf="!post && posts.length > 0">
     <ul>
       <li *ngFor="let p of posts">
@@ -12,3 +11,16 @@
       </li>
     </ul>
   </div>
+  <hr class="my-4">
+
+  <div class="mb-3">
+    <p>Add comment</p>
+    <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+      <textarea class="form-control" id="message" rows="5" formControlName="body" placeholder="Write your comment..."></textarea>
+      <br>
+      <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+      
+  
+  <hr class="my-4">
