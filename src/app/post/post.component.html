@@ -13,14 +13,32 @@
   </div>
   <hr class="my-4">
 
-  <div class="mb-3">
-    <p>Add comment</p>
-    <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
-      <textarea class="form-control" id="message" rows="5" formControlName="body" placeholder="Write your comment..."></textarea>
-      <br>
-      <button type="submit" class="btn btn-primary">Submit</button>
+
+    <div *ngFor="let comment of comments">
+      <p>{{ comment.body }}</p>
+    
+      <button (click)="editComment(comment)"  type="submit" class="btn btn-warning">Edit</button> 
+    
+      <div *ngIf="isEditing && commentIdToEdit === comment.id"> 
+        <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+          <textarea class="form-control" id="message" rows="3" formControlName="body"></textarea>
+          <button type="submit" class="btn btn-primary">Save</button>
+          <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button> 
+   
+        </form>
+      </div>
+    </div>
+    <div class="mb-3">
+      <p>Add comment</p>
+      <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+        <textarea class="form-control" id="message" rows="5" formControlName="body" placeholder="Write your comment..."></textarea>
+        <div *ngIf="commentForm.get('body')?.hasError('required') && commentForm.get('body')?.touched" class="text-danger">
+          Comment is required
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        
       </form>
     </div>
-      
-  
+
   <hr class="my-4">
