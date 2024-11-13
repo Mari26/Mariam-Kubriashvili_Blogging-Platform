@@ -23,7 +23,7 @@ export class BlogPostComponent implements OnInit{
   ngOnInit() {
     this.postService.getPosts()
     .subscribe(posts => {
-      this.posts = posts.slice(0, 3); // Take the first 3 posts
+      this.posts = posts.slice(0, 3); // Take the first 3 posts,and add it on display
     });
   
   }

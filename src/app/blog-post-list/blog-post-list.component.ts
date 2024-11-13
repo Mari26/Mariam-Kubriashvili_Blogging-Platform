@@ -19,11 +19,11 @@ export class BlogPostListComponent implements OnInit{
   ngOnInit() {
     this.postService.getPosts().subscribe({
       next: (posts) => { 
-        this.posts = posts; // Assign the posts here
+        this.posts = posts; 
       },
       error: (error) => {
         console.error('Error fetching posts:', error);
-        // Handle the error (e.g., display an error message)
+        
       }
     });
   

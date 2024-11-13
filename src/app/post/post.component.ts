@@ -44,11 +44,10 @@ export class PostComponent implements OnInit {
           switchMap((post: Post | undefined) => {
             this.post = post;
             // Fetch comments only after the post is loaded
-            return this.commentService.getCommentsForPost(parseInt(id!, 10)); // Assuming you have this method
+            return this.commentService.getCommentsForPost(parseInt(id!, 10)); 
           }),
           catchError(error => {
             console.error('Error loading post or comments:', error);
-            // TODO: Handle the error, e.g., display an error message
             return of(null);
           })
         ).subscribe(comments => {
@@ -90,15 +89,14 @@ onSubmit() {
     request$.pipe(
       catchError(error => {
         console.error('Error:', error);
-        // TODO: Display an error message to the user
         return of(null);
       })
-    ).subscribe(response => {  // Handle the response here
+    ).subscribe(response => {  
       console.log('Response:', response); 
       this.commentForm.reset();
+      alert('Comment created successfully!'); 
       this.isEditing = false;
       this.commentIdToEdit = null;
-      // TODO: Optionally display a success message and refresh comments
     }); 
   } else {
     this.commentForm.markAllAsTouched();
@@ -116,7 +114,7 @@ generateRandomId(): number {
   cancelEdit() {
     this.isEditing = false;
     this.commentIdToEdit = null;
-    this.commentForm.reset(); // Reset the form
+    this.commentForm.reset(); 
   }
 }
 
