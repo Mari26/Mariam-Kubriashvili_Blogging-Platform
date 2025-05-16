@@ -1,0 +1,19 @@
+li span {
+    color: aliceblue;
+    /* text-align:center; */
+
+    text-align:center;
+    
+}
+#nervozi{
+   
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+
+
+}
+#click{
+    margin-top: 15px;
+}

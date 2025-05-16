@@ -22,7 +22,8 @@ export class PostComponent implements OnInit {
   post: Post | undefined;
   posts: Post[] = [];
   commentForm!: FormGroup;
-  isEditing: boolean = false;;
+  isEditing: boolean = false;comment: any;
+;
   commentIdToEdit:  number | null = null;
   comments: Comment[] = [];
 
@@ -73,8 +74,8 @@ onSubmit() {
       commentId = this.generateRandomId();
     }
 
-    const newComment: Comment = { 
-      id: commentId, 
+    const newComment: Comment = {
+      id: commentId,
       body: this.commentForm.value.body
     };
 
@@ -83,7 +84,7 @@ onSubmit() {
     if (this.isEditing) {
       request$ = this.commentService.updateComment(commentId, newComment);
     } else {
-      request$ = this.commentService.createComment(newComment); 
+      request$ = this.commentService.createComment(newComment);
     }
 
     request$.pipe(
@@ -91,18 +92,29 @@ onSubmit() {
         console.error('Error:', error);
         return of(null);
       })
-    ).subscribe(response => {  
-      console.log('Response:', response); 
+    ).subscribe(response => {
+      console.log('Response:', response);
       this.commentForm.reset();
-      alert('Comment created successfully!'); 
+
+      if (this.isEditing) {
+        // Update logic here
+        const index = this.comments.findIndex(c => c.id === commentId);
+        if (index !== -1) {
+          this.comments[index] = newComment; // Update the comment in the array
+        }
+        alert('Comment updated successfully!');
+      } else {
+        this.comments.push(newComment); // Add the new comment to the array
+        alert('Comment created successfully!');
+      }
+
       this.isEditing = false;
       this.commentIdToEdit = null;
-    }); 
+    });
   } else {
     this.commentForm.markAllAsTouched();
   }
 }
-
 generateRandomId(): number {
   return Math.floor(Math.random() * 100000); 
 }
@@ -116,6 +128,7 @@ generateRandomId(): number {
     this.commentIdToEdit = null;
     this.commentForm.reset(); 
   }
+ 
 }
 
 

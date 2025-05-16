@@ -1,4 +1,4 @@
-import { Component,OnInit} from '@angular/core';
+import { Component,OnInit,inject} from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet, ROUTES } from '@angular/router';
 import { BlogPostComponent } from './blog-post/blog-post.component';
 import { HeaderComponent } from './header/header.component';
@@ -9,7 +9,9 @@ import { SharedModule } from './shared/shared.module';
 import { Post, PostService } from './post.service';
 import { routes } from './app.routes';
 import { BlogPostListComponent } from './blog-post-list/blog-post-list.component';
-
+import { AuthService } from './services/auth.service'; // Adjust path if needed
+import { Observable } from 'rxjs';
+import { User } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-root',
@@ -38,8 +40,26 @@ import { BlogPostListComponent } from './blog-post-list/blog-post-list.component
 })
 export class AppComponent implements OnInit{
   title = 'routing-app';
+  authService: AuthService = inject(AuthService); // Using inject()
+
+  currentUser$: Observable<User | null>;
+  isLoggedIn$: Observable<boolean>;
+  
   posts: Post[] = [];
-  constructor(private postService: PostService) {}
+  constructor(private postService: PostService) {
+    this.currentUser$ = this.authService.currentUser$;
+    this.isLoggedIn$ = this.authService.isLoggedIn$;
+  }
+
+  async handleLogout(): Promise<void> {
+    try {
+      await this.authService.logout();
+      // Navigation to login is handled within authService.logout()
+    } catch (error) {
+      console.error("Logout failed in AppComponent", error);
+      // Optionally display an error to the user here
+    }
+  }
   ngOnInit() {
     this.postService.getPosts()
       .subscribe(

@@ -8,15 +8,52 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto py-4 py-lg-0">
-                <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li>
+              <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+                <!-- <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a></li> -->
                 <li class="nav-item">
                     <a class="nav-link px-lg-3 py-3 py-lg-4"  routerLink="/about" routerLinkActive="active" ariaCurrentWhenActive="page">About</a>
                   </li>
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" routerLink="/post" routerLinkActive="active" ariaCurrentWhenActive="page">Post</a></li>
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" routerLink="/contact" routerLinkActive="active" ariaCurrentWhenActive="page">Contact</a></li>
+            
+    <!-- <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Home</a></li> -->
+      @if (isLoggedIn$ | async; as isLoggedIn) {
+        @if (isLoggedIn) {
+          @if (currentUser$ | async; as user) {
+            <li id="nervozi"><span>Welcome, {{ user.email }}</span></li>
+          }
+          <li class="nav-item"><button  type="button" (click)="handleLogout()" id="click">Logout</button></li>
+        } @else {
+          <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" routerLink="/login" routerLinkActive="active-link">Login</a></li>
+          <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" routerLink="/signup" routerLinkActive="active-link">Sign Up</a></li>
+        }
+      } @else {
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" routerLink="/login" routerLinkActive="active-link">Login</a></li>
+        <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" routerLink="/signup" routerLinkActive="active-link">Sign Up</a></li>
+      }
+            
+            
             </ul>
         </div>
     </div>
+     <!-- <h1><a routerLink="/">{{ title }}</a></h1> -->
+    <!-- <ul class="navbar-nav ms-auto py-4 py-lg-0">
+      <li><a routerLink="/" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+      @if (isLoggedIn$ | async; as isLoggedIn) {
+        @if (isLoggedIn) {
+          @if (currentUser$ | async; as user) {
+            <li><span>Welcome, {{ user.email }}</span></li>
+          }
+          <li><button (click)="handleLogout()" class="btn btn-link-logout">Logout</button></li>
+        } @else {
+          <li><a routerLink="/login" routerLinkActive="active-link">Login</a></li>
+          <li><a routerLink="/signup" routerLinkActive="active-link">Sign Up</a></li>
+        }
+      } @else {
+        <li><a routerLink="/login" routerLinkActive="active-link">Login</a></li>
+        <li><a routerLink="/signup" routerLinkActive="active-link">Sign Up</a></li>
+      }
+    </ul>    -->
 </nav>
 <!-- Page Header-->
 <header class="masthead" style="background-image: url('ast.jpg')">
