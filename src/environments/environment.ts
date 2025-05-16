@@ -6,7 +6,7 @@ export const environment = {
         projectId: "personal-blog-site-853c2",
         storageBucket: "personal-blog-site-853c2.firebasestorage.app",
         messagingSenderId: "947036467098",
-        appId: "1:947036467098:web:a836884e6f60c097e25423"
+        appId: "APP_ID"
         // measurementId: "YOUR_MEASUREMENT_ID" // Optional, if you have it
       }
       // You can add other environment-specific variables here
