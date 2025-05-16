@@ -5,7 +5,7 @@ export const environment = {
         authDomain: "authDomain",
         projectId: "projectId",
         storageBucket: "storageBucket",
-        messagingSenderId: "947036467098",
+        messagingSenderId: "messagingSenderId",
         appId: "APP_ID"
         // measurementId: "YOUR_MEASUREMENT_ID" // Optional, if you have it
       }
