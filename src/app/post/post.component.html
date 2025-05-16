@@ -1,44 +1,43 @@
  
 <div *ngIf="post">
-    <h1>{{ post.title }}</h1>
-    <p>{{ post.body }}</p>
-  </div>
+  <h1>{{ post.title }}</h1>
+  <p>{{ post.body }}</p>
 
-  <div *ngIf="!post && posts.length > 0">
-    <ul>
-      <li *ngFor="let p of posts">
-        <a [routerLink]="['/post', p.id]">{{ p.title }}</a>
-      </li>
-    </ul>
-  </div>
-  <hr class="my-4">
+  <hr class="my-4"> 
 
+  <div *ngFor="let comment of comments">
+    <p>{{ comment.body }}</p>
 
-    <div *ngFor="let comment of comments">
-      <p>{{ comment.body }}</p>
-    
-      <button (click)="editComment(comment)"  type="submit" class="btn btn-warning">Edit</button> 
-    
-      <div *ngIf="isEditing && commentIdToEdit === comment.id"> 
-        <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
-          <textarea class="form-control" id="message" rows="3" formControlName="body"></textarea>
-          <button type="submit" class="btn btn-primary">Save</button>
-          <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button> 
-   
-        </form>
-      </div>
-    </div>
-    <div class="mb-3">
-      <p>Add comment</p>
+    <button (click)="editComment(comment)" type="button" class="btn btn-warning">Edit</button>
+
+    <div *ngIf="isEditing && commentIdToEdit === comment.id"> 
       <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
-        <textarea class="form-control" id="message" rows="5" formControlName="body" placeholder="Write your comment..."></textarea>
-        <div *ngIf="commentForm.get('body')?.hasError('required') && commentForm.get('body')?.touched" class="text-danger">
-          Comment is required
-        </div>
-        <br>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        
+        <textarea class="form-control" id="message" rows="3" formControlName="body"></textarea>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <button type="button" class="btn btn-secondary" (click)="cancelEdit()">Cancel</button>   
+ 
       </form>
     </div>
+  </div>
 
-  <hr class="my-4">
+  <div class="mb-3">
+    <p>Add comment</p>
+    <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+      <textarea class="form-control" id="message" rows="5" formControlName="body" placeholder="Write your comment..."></textarea>
+      <div *ngIf="commentForm.get('body')?.hasError('required') && commentForm.get('body')?.touched" class="text-danger">
+        Comment is required
+      </div>
+      <br>
+      <button type="submit" class="btn btn-primary">{{ isEditing ? 'Update' : 'Submit' }}</button>
+    </form>
+  </div>
+
+</div> 
+
+<div *ngIf="!post && posts.length > 0">
+  <ul>
+    <li *ngFor="let p of posts">
+      <a [routerLink]="['/post', p.id]">{{ p.title }}</a>
+    </li>
+  </ul>
+</div>

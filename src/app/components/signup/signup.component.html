@@ -1,0 +1,66 @@
+<!-- <p>signup works!</p> -->
+ <div class="signup-container" id="Logout">
+  <h2>Sign Up</h2>
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+    <div class="form-group mb-3">
+      <label for="email" class="fw-bold">Email:</label>
+      <input type="email" id="email" formControlName="email" class="form-control" placeholder="Enter your email">
+      @if (email?.invalid && (email?.dirty || email?.touched)) {
+        <div class="error-message">
+          @if (email?.errors?.['required']) {
+            <span>Email is required.</span>
+          }
+          @if (email?.errors?.['email']) {
+            <span>Invalid email format.</span>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="password" class="fw-bold">Password:</label>
+      <input type="password" id="password" formControlName="password"  class="form-control" placeholder="Create a password (min. 6 characters)">
+      @if (password?.invalid && (password?.dirty || password?.touched)) {
+        <div class="error-message">
+          @if (password?.errors?.['required']) {
+            <span>Password is required.</span>
+          }
+          @if (password?.errors?.['minlength']) {
+            <span>Password must be at least 6 characters long.</span>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group mb-3">
+      <label for="confirmPassword" class="fw-bold">Confirm Password:</label>
+      <input type="password" id="confirmPassword" class="form-control" formControlName="confirmPassword" placeholder="Confirm your password">
+      @if (confirmPassword?.invalid && (confirmPassword?.dirty || confirmPassword?.touched)) {
+        <div class="error-message">
+          @if (confirmPassword?.errors?.['required']) {
+            <span>Confirming password is required.</span>
+          }
+          @if (confirmPassword?.errors?.['mismatch']) {
+            <span>Passwords do not match.</span>
+          }
+        </div>
+      }
+    </div>
+
+    @if (errorMessage) {
+      <p class="error-message server-error">{{ errorMessage }}</p>
+    }
+
+    <button type="submit" [disabled]="signupForm.invalid || isLoading" class="btn btn-primary">
+       @if (isLoading) {
+        <span>Signing up...</span>
+      } @else {
+        <span>Sign Up</span>
+      }
+    </button>
+  </form>
+  <p class="mt-3">
+    Already have an account? <a routerLink="/login">Login</a>
+  </p>
+</div>
+

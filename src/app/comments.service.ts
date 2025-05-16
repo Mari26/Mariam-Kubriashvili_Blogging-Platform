@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 
 interface Comment {
   id: number;
@@ -24,13 +24,21 @@ export class CommentsService {
     const url = `${this.dbJsonUrl}?postId=${postId}`;
     return this.http.get<Comment[]>(url);
   }
-
-
   updateComment(commentId: number, updatedComment: Comment): Observable<Comment> {
     const url = `${this.dbJsonUrl}/${commentId}`;
     return this.http.put<Comment>(url, updatedComment).pipe(
+      tap((updated) => {
+
+        Object.assign(updatedComment, updated); 
+      }),
       catchError(this.handleError)
     );
+
+  // updateComment(commentId: number, updatedComment: Comment): Observable<Comment> {
+  //   const url = `${this.dbJsonUrl}/${commentId}`;
+  //   return this.http.put<Comment>(url, updatedComment).pipe(
+  //     catchError(this.handleError)
+  //   );
   }
 
   createComment(comment: Comment): Observable<Comment> {
