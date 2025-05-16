@@ -1,7 +1,7 @@
 export const environment = {
       production: true,
       firebase: { // This 'firebase' key is a common convention
-        apiKey: "AIzaSyBkZ4PnsfRovxkbbZf18It5RA5fW4CTPHE", // Your actual API key (Ideally from a separate PROD Firebase project)
+        apiKey: "firebase_Api_key", // Your actual API key (Ideally from a separate PROD Firebase project)
         authDomain: "personal-blog-site-853c2.firebaseapp.com",
         projectId: "personal-blog-site-853c2",
         storageBucket: "personal-blog-site-853c2.firebasestorage.app",
