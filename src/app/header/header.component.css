@@ -1,5 +1,5 @@
 li span {
-    color: aliceblue;
+    color: rgb(19, 128, 223);
     /* text-align:center; */
 
     text-align:center;
@@ -9,7 +9,7 @@ li span {
    
   margin: auto;
   width: 50%;
-  border: 3px solid green;
+  /* border: 3px solid rgb(2, 11, 2); */
   padding: 10px;
 
 
