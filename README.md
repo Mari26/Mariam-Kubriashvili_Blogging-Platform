@@ -1,4 +1,4 @@
-# BloginggPlatform
+# BloginggPlatform -- https://mari26.github.io/Mariam-Kubriashvili_Blogging-Platform/
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.8.
 
